@@ -43,10 +43,10 @@ public class Inscripcion implements Serializable {
     public Inscripcion() {
     }
 
-    public Inscripcion(Alumno alumno, Carrera carrera, LocalDate fechaInscripcion) {
+    public Inscripcion(Alumno alumno, Carrera carrera) {
         this.nroLibreta = alumno.getNro_libreta(); // Suponiendo que `nro_libreta` es la PK de Alumno
         this.idCarrera = carrera.getId_carrera(); // Suponiendo que `id_carrera` es la PK de Carrera
-        this.fechaInscripcion = fechaInscripcion;
+        this.fechaInscripcion = LocalDate.now();
         this.alumno = alumno;
         this.carrera = carrera;
         this.seGraduo = false;

@@ -3,10 +3,10 @@ package tp3.entregable3.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import tp3.entregable3.exceptions.BadRequestException;
+import tp3.entregable3.exceptions.NotFoundException;
 import tp3.entregable3.services.CarreraService;
 
 @RestController
@@ -17,14 +17,49 @@ public class CarreraController {
 
     @GetMapping
     public ResponseEntity<?> getAllCarreras(
-            //posible caso de activacion --> /api/carreras?sortByInscriptos=true
-            //defualt : false = allCarreras
-            @RequestParam(value = "sortByInscriptos", required = false) boolean sortByInscriptos) {
+            @RequestParam(value = "sortByInscriptos", required = false) boolean sortByInscriptos,
+            @RequestParam(value = "generarReporte", required = false) boolean generarReporte
+    ) {
+        return ResponseEntity.status(HttpStatus.OK).body(carreraService.findAll(sortByInscriptos, generarReporte));
+    }
 
-        if (sortByInscriptos) {
-            // Si hay un campo de orden, devolver ordenado por el campo especificado
-            return ResponseEntity.status(HttpStatus.OK).body(carreraService.getCarreraXInscriptos());
+    @GetMapping("/{idCarrera}")
+    public ResponseEntity<?> getCarrera(@PathVariable int idCarrera) {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(carreraService.findCarrera(idCarrera));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.OK).body(carreraService.findAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> addCarrera(@RequestBody String nombre) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.saveCarrera(nombre));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{idCarrera}")
+    public ResponseEntity<?> deleteCarrera(@PathVariable int idCarrera) {
+        try {
+            return ResponseEntity.ok(carreraService.deleteCarrera(idCarrera));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/{idCarrera}")
+    public ResponseEntity<?> updateCarrera(@RequestBody String nombre, @PathVariable int idCarrera) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(carreraService.updateCarrera(idCarrera, nombre));
+        } catch (NotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (BadRequestException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+
+        }
+
     }
 }

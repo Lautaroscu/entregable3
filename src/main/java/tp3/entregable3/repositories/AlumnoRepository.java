@@ -1,17 +1,20 @@
 package tp3.entregable3.repositories;
 
-import jakarta.persistence.NamedQuery;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import tp3.entregable3.entities.Alumno;
 
-public interface AlumnoRepository extends JpaRepository<Alumno, Integer> {
-//    @NamedQuery(name = Alumno.ALUMNOSSORTNROLIB, query = "SELECT a FROM Alumno a ORDER BY a.nro_libreta")
-//
-//    @NamedQuery(name = Alumno.ALUMNOSPORGENERO, query = "SELECT a FROM Alumno a WHERE a.genero = :genero")
-//
-//    @NamedQuery(name = Alumno.ALUMNOCARRERAYCIUDAD, query = "SELECT a FROM Alumno a WHERE a.ciudad_residencia = :ciudad AND a IN (SELECT i.alumno FROM Inscripcion i WHERE i.carrera.nombre = :carrera)")
-//
-//    @NamedQuery(name = Alumno.LISTARALUMNOSSORTAPELLIDO, query = "SELECT a FROM Alumno a ORDER BY a.apellido")
-//
-//    @NamedQuery(name = Alumno.LISTARALUMNOS, query = "SELECT a FROM Alumno a ORDER BY a.apellido")
+import java.util.List;
+
+public interface AlumnoRepository extends JpaRepository<Alumno, Integer> , JpaSpecificationExecutor<Alumno> {
+    @Query(value = "SELECT a FROM Alumno a WHERE lower( a.genero) = lower( :genero)")
+  List<Alumno> listByGenero(@Param("genero") String genero);
+    @Query(value = "select a from Alumno a where lower( a.ciudad_residencia) = lower( :ciudad) AND a.nro_libreta IN (" +
+            "select i.nroLibreta from Inscripcion i WHERE LOWER( i.carrera.nombre) = lower( :carrera))")
+    List<Alumno> listByCiudadYCarrera(@Param("ciudad") String ciudad ,@Param("carrera") String carrera);
+
 }
