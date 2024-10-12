@@ -10,9 +10,8 @@ import tp3.entregable3.entities.Carrera;
 public class OutputCarreraXInscriptosDTO extends OutputCarreraDTO {
     private Long cantInscriptos;
 
-    public OutputCarreraXInscriptosDTO(Carrera c , Long cantInscriptos) {
+    public OutputCarreraXInscriptosDTO(Carrera c, Long cantInscriptos) {
         super(c);
         this.cantInscriptos = cantInscriptos;
     }
-
 }

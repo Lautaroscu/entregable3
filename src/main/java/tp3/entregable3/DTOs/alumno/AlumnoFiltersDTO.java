@@ -16,5 +16,4 @@ public class AlumnoFiltersDTO {
         this.ciudadRecidencia = ciudadRecidencia;
         this.carrera = carrera;
     }
-
 }

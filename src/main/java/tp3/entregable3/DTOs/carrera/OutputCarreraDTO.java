@@ -11,9 +11,8 @@ public class OutputCarreraDTO {
     private int id;
     private String nombre;
 
-    public OutputCarreraDTO(Carrera c){
+    public OutputCarreraDTO(Carrera c) {
         this.id = c.getId_carrera();
         this.nombre = c.getNombre();
     }
-
 }

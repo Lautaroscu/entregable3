@@ -17,8 +17,13 @@ import java.util.List;
 @RequestMapping("/api/inscripciones")
 
 public class InscripcionController {
+
+    private final InscripcionService inscripcionService;
+
     @Autowired
-    private InscripcionService inscripcionService;
+    public InscripcionController(InscripcionService inscripcionService) {
+        this.inscripcionService = inscripcionService;
+    }
 
     @GetMapping
     public ResponseEntity<List<OutputInscripcionDTO>> listarInscripciones() {
@@ -63,6 +68,4 @@ public class InscripcionController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-
-
 }

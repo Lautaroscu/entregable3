@@ -24,6 +24,4 @@ public class OutputInscripcionDTO {
         this.seGraduo = inscripcion.isSeGraduo();
         this.fechaInscripcion = inscripcion.getFechaInscripcion();
     }
-
-
 }

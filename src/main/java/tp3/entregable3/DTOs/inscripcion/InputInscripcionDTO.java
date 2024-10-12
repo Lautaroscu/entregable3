@@ -21,9 +21,5 @@ public class InputInscripcionDTO {
         this.nroLibreta = inscripcion.getNroLibreta();
         this.seGraduo = inscripcion.isSeGraduo();
         this.fechaInscripcion = inscripcion.getFechaInscripcion();
-
     }
-
-
-
 }

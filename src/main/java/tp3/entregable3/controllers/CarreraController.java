@@ -12,8 +12,13 @@ import tp3.entregable3.services.CarreraService;
 @RestController
 @RequestMapping("/api/carreras")
 public class CarreraController {
+
+    private final CarreraService carreraService;
+
     @Autowired
-    private CarreraService carreraService;
+    public CarreraController(CarreraService carreraService) {
+        this.carreraService = carreraService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAllCarreras(
@@ -58,8 +63,6 @@ public class CarreraController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (BadRequestException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-
         }
-
     }
 }

@@ -17,12 +17,16 @@ import java.util.List;
 
 @Service
 public class InscripcionService {
-    @Autowired
     private InscripcionRepository inscripcionRepository;
-    @Autowired
     private AlumnoRepository alumnoRepository;
-    @Autowired
     private CarreraRepository carreraRepository;
+
+    @Autowired
+    public InscripcionService(InscripcionRepository inscripcionRepository, AlumnoRepository alumnoRepository, CarreraRepository carreraRepository) {
+        this.alumnoRepository = alumnoRepository;
+        this.carreraRepository = carreraRepository;
+        this.inscripcionRepository = inscripcionRepository;
+    }
 
     public List<OutputInscripcionDTO> obtenerInscripciones() {
         return inscripcionRepository

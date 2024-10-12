@@ -51,6 +51,5 @@ public class AlumnoSpecifications {
             return root.get("nro_libreta").in(subquery);
         };
     }
-
 }
 

@@ -18,8 +18,12 @@ import java.util.List;
 
 @Service
 public class AlumnoService {
-    @Autowired
     private AlumnoRepository alumnoRepository;
+
+    @Autowired
+    public AlumnoService(AlumnoRepository alumnoRepository) {
+        this.alumnoRepository = alumnoRepository;
+    }
 
     public List<OutputAlumnoDTO> findAll(String sort, AlumnoFiltersDTO alumnoFiltersDTO) {
         //posibles filtros
@@ -87,7 +91,6 @@ public class AlumnoService {
                 || alumno.getGenero() == null || alumno.getGenero().isEmpty()
                 || alumno.getCiudad_residencia() == null || alumno.getCiudad_residencia().isEmpty();
     }
-
 }
 
 

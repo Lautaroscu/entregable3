@@ -14,8 +14,13 @@ import tp3.entregable3.services.AlumnoService;
 @RestController
 @RequestMapping("/api/alumnos")
 public class AlumnoController {
+
+    private final AlumnoService alumnoService;
+
     @Autowired
-    private AlumnoService alumnoService;
+    public AlumnoController(AlumnoService alumnoService) {
+        this.alumnoService = alumnoService;
+    }
 
     @GetMapping
     public ResponseEntity<?> getAlumnos(
@@ -31,8 +36,6 @@ public class AlumnoController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-
-
     }
 
     @GetMapping("/{nroLibreta}")
@@ -43,7 +46,6 @@ public class AlumnoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-
 
     @PostMapping
     public ResponseEntity<?> saveAlumno(@RequestBody InputAlumnoDTO alumnoDTO) {

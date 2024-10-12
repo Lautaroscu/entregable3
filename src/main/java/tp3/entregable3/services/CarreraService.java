@@ -13,8 +13,12 @@ import java.util.List;
 
 @Service
 public class CarreraService {
-    @Autowired
     private CarreraRepository carreraRepository;
+
+    @Autowired
+    public CarreraService(CarreraRepository carreraRepository) {
+        this.carreraRepository = carreraRepository;
+    }
 
     public List<?> findAll(boolean sortByInscriptos, boolean generarReporte) {
         if (sortByInscriptos) {
@@ -25,7 +29,6 @@ public class CarreraService {
         }
         return carreraRepository.findAll().stream().map(OutputCarreraDTO::new).toList();
     }
-
 
     public OutputCarreraDTO saveCarrera(String nombre) {
         Carrera carrera1 = new Carrera(nombre);

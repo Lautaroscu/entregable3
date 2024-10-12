@@ -26,5 +26,4 @@ public class OutputAlumnoDTO implements Serializable {
         this.nro_libreta = a.getNro_libreta();
 
     }
-
 }
