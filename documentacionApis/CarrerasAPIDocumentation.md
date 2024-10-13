@@ -42,6 +42,24 @@
   inscriptos y egresados por año, ordenadas alfabéticamente,
   presentando los años de manera cronológica.
 
+#### Responses:
+
+- **200 OK:** Devuelve una lista de ReporteCarreraDTO.
+```json
+ {
+  "nombreCarrera": "Licenciatura Ambiental",
+  "anio": 2021,
+  "cantidadInscriptos": 1,
+  "cantidadEgresados": 1 
+},
+{
+"nombreCarrera": "Licenciatura Ambiental",
+"anio": 2024,
+"cantidadInscriptos": 1,
+"cantidadEgresados": 0
+},
+
+```
 
 
 ### 2. Get Carrera by ID
