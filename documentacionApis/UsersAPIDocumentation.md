@@ -44,6 +44,15 @@
 #### Request Body:
 - **InputAlumnoDTO**: Objeto que representa la información del alumno a crear.
 
+ ```json
+  {
+  "nombre": "Melisa",
+  "apellido": "Rodriguez",
+  "edad": 23,
+  "genero": "Femenino",
+  "ciudad_residencia": "Mar del Plata"
+}
+```
 #### Responses:
 - **201 Created:** Devuelve el alumno creado.
 - **400 Bad Request:** Si hay un error en los datos proporcionados.
@@ -60,7 +69,15 @@
 
 #### Request Body:
 - **InputAlumnoDTO**: Objeto que representa la información actualizada del alumno.
-
+ ```json
+  {
+  "nombre": "MelisaUpdated",
+  "apellido": "RodriguezUpdated",
+  "edad": 23,
+  "genero": "Femenino",
+  "ciudad_residencia": "Mar del Plata"
+}
+```
 #### Responses:
 - **201 Created:** Devuelve el alumno actualizado.
 - **400 Bad Request:** Si hay un error en los datos proporcionados.

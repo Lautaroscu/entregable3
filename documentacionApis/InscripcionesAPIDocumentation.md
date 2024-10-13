@@ -68,7 +68,6 @@
   "seGraduo": false,
   "fechaInscripcion": "2024-09-30"
 }
-
 ```
 - (SE DEBE PASAR EL OBJETO COMPLETO AUNQUE SOLO QUIERA MODIFICAR UN CAMPO)
 
