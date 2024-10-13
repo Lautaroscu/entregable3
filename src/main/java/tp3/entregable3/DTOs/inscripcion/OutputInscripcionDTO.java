@@ -13,14 +13,14 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 public class OutputInscripcionDTO {
-    private Carrera carrera;
-    private Alumno alumno;
+    private int idCarrera;
+    private int nroLibreta;
     private boolean seGraduo;
     private LocalDate fechaInscripcion;
 
     public OutputInscripcionDTO(Inscripcion inscripcion) {
-        this.carrera = inscripcion.getCarrera();
-        this.alumno = inscripcion.getAlumno();
+        this.idCarrera = inscripcion.getCarrera().getId_carrera();
+        this.nroLibreta = inscripcion.getAlumno().getNro_libreta();
         this.seGraduo = inscripcion.isSeGraduo();
         this.fechaInscripcion = inscripcion.getFechaInscripcion();
     }

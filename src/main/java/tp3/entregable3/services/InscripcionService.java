@@ -17,9 +17,9 @@ import java.util.List;
 
 @Service
 public class InscripcionService {
-    private InscripcionRepository inscripcionRepository;
-    private AlumnoRepository alumnoRepository;
-    private CarreraRepository carreraRepository;
+    private final InscripcionRepository inscripcionRepository;
+    private final AlumnoRepository alumnoRepository;
+    private final CarreraRepository carreraRepository;
 
     @Autowired
     public InscripcionService(InscripcionRepository inscripcionRepository, AlumnoRepository alumnoRepository, CarreraRepository carreraRepository) {
@@ -44,23 +44,20 @@ public class InscripcionService {
         return new OutputInscripcionDTO(inscripcion);
     }
 
-    public OutputInscripcionDTO updateInscripcion(int idCarrera, int nroLibreta, InputInscripcionDTO dto) {
-        Inscripcion inscripcionToModified = inscripcionRepository.findById(new InscripcionId(idCarrera, nroLibreta)).orElseThrow(() -> new NotFoundException("Inscripcion not found"));
+    public OutputInscripcionDTO updateInscripcion(int nroLibreta, int idCarrera, InputInscripcionDTO dto) {
+        Inscripcion inscripcionToModified = inscripcionRepository.findById(new InscripcionId(nroLibreta, idCarrera)).orElseThrow(() -> new NotFoundException("Inscripcion not found"));
         inscripcionToModified.setNroLibreta(nroLibreta);
         inscripcionToModified.setIdCarrera(idCarrera);
         inscripcionToModified.setCarrera(carreraRepository.findById(dto.getIdCarrera()).orElseThrow(() -> new NotFoundException("Carrera not found")));
         inscripcionToModified.setAlumno(alumnoRepository.findById(dto.getNroLibreta()).orElseThrow(() -> new NotFoundException("Alumno not found")));
         inscripcionToModified.setSeGraduo(dto.isSeGraduo());
-
         inscripcionToModified.setFechaInscripcion(dto.getFechaInscripcion());
-        inscripcionRepository.save(inscripcionToModified);
-
         inscripcionRepository.save(inscripcionToModified);
         return new OutputInscripcionDTO(inscripcionToModified);
     }
 
-    public OutputInscripcionDTO findInscripcion(int idCarrera, int nroLibreta) {
-        InscripcionId id = new InscripcionId(idCarrera, nroLibreta);
+    public OutputInscripcionDTO findInscripcion(int nroLibreta, int idCarrera) {
+        InscripcionId id = new InscripcionId(nroLibreta, idCarrera);
         Inscripcion inscripcion = inscripcionRepository.findById(id).orElseThrow(() -> new NotFoundException("Inscripcion not found"));
         return new OutputInscripcionDTO(inscripcion);
     }

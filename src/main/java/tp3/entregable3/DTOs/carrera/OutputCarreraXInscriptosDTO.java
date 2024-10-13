@@ -8,9 +8,9 @@ import tp3.entregable3.entities.Carrera;
 @Setter
 
 public class OutputCarreraXInscriptosDTO extends OutputCarreraDTO {
-    private Long cantInscriptos;
+    private long cantInscriptos;
 
-    public OutputCarreraXInscriptosDTO(Carrera c, Long cantInscriptos) {
+    public OutputCarreraXInscriptosDTO(Carrera c, long cantInscriptos) {
         super(c);
         this.cantInscriptos = cantInscriptos;
     }

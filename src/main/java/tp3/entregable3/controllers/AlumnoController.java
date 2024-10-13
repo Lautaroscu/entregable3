@@ -70,6 +70,7 @@ public class AlumnoController {
     @DeleteMapping("/{nroLibreta}")
     public ResponseEntity<?> deleteAlumno(@PathVariable int nroLibreta) {
         try {
+            alumnoService.delete(nroLibreta);
             return ResponseEntity.status(HttpStatus.OK).body("User deleted successfully");
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

@@ -52,7 +52,7 @@
 
 ### 4. Actualizar Inscripción
 - **Method:** `PUT`
-- **Endpoint:** `/api/inscripciones/{idCarrera}/{nroLibreta}`
+- **Endpoint:** `/api/inscripciones/{nroLibreta}/{idCarrera}`
 - **Description:** Actualiza una inscripción existente.
 
 #### Path Variables:

@@ -33,7 +33,7 @@ public class InscripcionController {
     @GetMapping("/{nroLibreta}/{idCarrera}")
     public ResponseEntity<?> findInscripcion(@PathVariable int nroLibreta, @PathVariable int idCarrera) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(inscripcionService.findInscripcion(idCarrera, nroLibreta));
+            return ResponseEntity.status(HttpStatus.OK).body(inscripcionService.findInscripcion(nroLibreta, idCarrera));
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
@@ -48,11 +48,11 @@ public class InscripcionController {
         }
     }
 
-    @PutMapping("/{idCarrera}/{nroLibreta}")
-    public ResponseEntity<?> updateInscripcion(@PathVariable int idCarrera, @PathVariable int nroLibreta, @RequestBody InputInscripcionDTO dto) {
+    @PutMapping("/{nroLibreta}/{idCarrera}")
+    public ResponseEntity<?> updateInscripcion(@PathVariable int nroLibreta, @PathVariable int idCarrera, @RequestBody InputInscripcionDTO dto) {
 
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionService.updateInscripcion(idCarrera, nroLibreta, dto));
+            return ResponseEntity.status(HttpStatus.CREATED).body(inscripcionService.updateInscripcion(nroLibreta, idCarrera, dto));
         } catch (NotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (BadRequestException e) {

@@ -3,6 +3,7 @@ package tp3.entregable3.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tp3.entregable3.DTOs.carrera.CarreraReporteDTO;
 import tp3.entregable3.DTOs.carrera.OutputCarreraDTO;
 import tp3.entregable3.entities.Carrera;
 import tp3.entregable3.exceptions.BadRequestException;
@@ -13,21 +14,22 @@ import java.util.List;
 
 @Service
 public class CarreraService {
-    private CarreraRepository carreraRepository;
+    private final CarreraRepository carreraRepository;
 
     @Autowired
     public CarreraService(CarreraRepository carreraRepository) {
         this.carreraRepository = carreraRepository;
     }
 
-    public List<?> findAll(boolean sortByInscriptos, boolean generarReporte) {
+    public List<?> findAll(boolean sortByInscriptos) {
         if (sortByInscriptos) {
             return carreraRepository.findCarrerasOrderByCantInscriptos();
         }
-        if (generarReporte) {
-            return carreraRepository.reporteDeCarreras();
-        }
+
         return carreraRepository.findAll().stream().map(OutputCarreraDTO::new).toList();
+    }
+    public List<CarreraReporteDTO> getCarrerasReporteDTO() {
+        return carreraRepository.reporteDeCarreras();
     }
 
     public OutputCarreraDTO saveCarrera(String nombre) {

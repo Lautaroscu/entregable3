@@ -17,9 +17,9 @@ public class InscripcionId implements Serializable {
     public InscripcionId() {
     }
 
-    public InscripcionId(int idCarrera, int nroLibreta) {
-        this.idCarrera = idCarrera;
+    public InscripcionId(int nroLibreta, int idCarrera) {
         this.nroLibreta = nroLibreta;
+        this.idCarrera = idCarrera;
     }
 
     @Override

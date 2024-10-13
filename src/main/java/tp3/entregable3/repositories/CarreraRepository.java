@@ -10,11 +10,12 @@ import tp3.entregable3.entities.Carrera;
 import java.util.List;
 
 public interface CarreraRepository extends JpaRepository<Carrera, Integer> {
-    @Query("SELECT new tp3.entregable3.DTOs.carrera.OutputCarreraXInscriptosDTO(i.carrera, COUNT(i)) " +
-            "FROM Inscripcion i " +
-            "GROUP BY i.carrera " +
+    @Query("SELECT new tp3.entregable3.DTOs.carrera.OutputCarreraXInscriptosDTO(c, COUNT(CASE WHEN i IS NULL THEN null ELSE 1 END)) " +
+            "FROM Carrera c LEFT JOIN Inscripcion i ON c.id_carrera = i.carrera.id_carrera " +
+            "GROUP BY c " +
             "ORDER BY COUNT(i)")
     List<OutputCarreraXInscriptosDTO> findCarrerasOrderByCantInscriptos();
+
 
     @Query(
             value = "SELECT new tp3.entregable3.DTOs.carrera.CarreraReporteDTO(c.nombre, YEAR(i.fechaInscripcion), " +

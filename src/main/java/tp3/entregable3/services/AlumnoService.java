@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service
 public class AlumnoService {
-    private AlumnoRepository alumnoRepository;
+    private final AlumnoRepository alumnoRepository;
 
     @Autowired
     public AlumnoService(AlumnoRepository alumnoRepository) {

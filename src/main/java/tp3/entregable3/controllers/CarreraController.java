@@ -5,9 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import tp3.entregable3.DTOs.carrera.CarreraReporteDTO;
 import tp3.entregable3.exceptions.BadRequestException;
 import tp3.entregable3.exceptions.NotFoundException;
 import tp3.entregable3.services.CarreraService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/carreras")
@@ -22,10 +25,13 @@ public class CarreraController {
 
     @GetMapping
     public ResponseEntity<?> getAllCarreras(
-            @RequestParam(value = "sortByInscriptos", required = false) boolean sortByInscriptos,
-            @RequestParam(value = "generarReporte", required = false) boolean generarReporte
+            @RequestParam(value = "sortByInscriptos", required = false) boolean sortByInscriptos
     ) {
-        return ResponseEntity.status(HttpStatus.OK).body(carreraService.findAll(sortByInscriptos, generarReporte));
+        return ResponseEntity.status(HttpStatus.OK).body(carreraService.findAll(sortByInscriptos));
+    }
+    @GetMapping("/reporte")
+    public ResponseEntity<List<CarreraReporteDTO>> getReporteCarreras() {
+        return ResponseEntity.ok(carreraService.getCarrerasReporteDTO());
     }
 
     @GetMapping("/{idCarrera}")

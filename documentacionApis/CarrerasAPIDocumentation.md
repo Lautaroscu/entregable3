@@ -8,24 +8,41 @@
 ### 1. Get All Carreras
 - **Method:** `GET`
 - **Endpoint:** `/api/carreras`
-- **Description:** Obtiene una lista de todas las carreras con la opción de ordenarlas por la cantidad de inscriptos y generar un reporte de las carreras, que para cada carrera incluya información de los
-  inscriptos y egresados por año. Donde se ordenan las carreras alfabéticamente, y
-  presenta los años de manera cronológica.
-  .
+- **Description:** Obtiene una lista de todas las carreras con la opción de ordenarlas por la cantidad de inscriptos
 
 #### Query Parameters:
 - `sortByInscriptos` (optional): Si es `true`, ordena las carreras por la cantidad de inscriptos.
 - - ejemplo : /api/carreras?sortByInscriptos=true
-- `generarReporte` (optional): Si es `true`, genera un reporte.
-- - ejemplo : /api/carreras?generarReporte=true
-
-
-- (Son consultas excluyentes, es decir no podria solicitar ambos simultaneamente)
 
 #### Responses:
-- **200 OK:** Devuelve una lista de carreras.
 
+- **200 OK:** Devuelve una lista de OutputCarreraDTO.
+  (carreras sin ordenar)
+```json
+{
+"idCarrera": 1,
+"nombre": "tudai"
+}
+
+```
+- ejemplo con ?sortByInscriptos=true (Lista de OutputCarreraXInscriptos)
+```json
+{
+"idCarrera": 1,
+"nombre": "tudai",
+"cantInscriptos": 3
+}
+
+```
 ---
+### 1. Get Reporte de carreras
+- **Method:** `GET`
+- **Endpoint:** `/api/carreras/reporte`
+- **Description:**  Genera un reporte de las carreras, donde para cada carrera incluye información de los
+  inscriptos y egresados por año, ordenadas alfabéticamente,
+  presentando los años de manera cronológica.
+
+
 
 ### 2. Get Carrera by ID
 - **Method:** `GET`
@@ -84,6 +101,8 @@
 #### Responses:
 - **200 OK:** Mensaje indicando que la carrera fue eliminada exitosamente.
 - **404 Not Found:** Si no se encuentra una carrera con el ID proporcionado.
+- **500 Server Error:** La carrera tiene al menos un inscripto
+
 
 ---
 

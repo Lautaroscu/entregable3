@@ -79,6 +79,8 @@
 #### Responses:
 - **200 OK:** Mensaje indicando que el alumno fue eliminado exitosamente.
 - **404 Not Found:** Si no se encuentra un alumno con el número de libreta proporcionado.
+- **500 Server Error:** El alumno tiene al menos una inscripcion
+
 
 ---
 
