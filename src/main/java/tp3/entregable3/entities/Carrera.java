@@ -1,12 +1,9 @@
 package tp3.entregable3.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.ToString;
 
 @Entity
-@Getter
-@ToString
+
 @Table(name = "carrera")
 
 public class Carrera {
@@ -18,6 +15,7 @@ public class Carrera {
     @Column
     private String nombre;
 
+
     public Carrera() {
     }
 
@@ -27,5 +25,12 @@ public class Carrera {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getId_carrera() {
+        return id_carrera;
     }
 }

@@ -1,12 +1,9 @@
 package tp3.entregable3.DTOs.alumno;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+
 import lombok.ToString;
 
-@Getter
-@Setter
+
 @ToString
 public class AlumnoFiltersDTO {
     private String genero, ciudadRecidencia, carrera;
@@ -15,5 +12,17 @@ public class AlumnoFiltersDTO {
         this.genero = genero;
         this.ciudadRecidencia = ciudadRecidencia;
         this.carrera = carrera;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public String getCiudadRecidencia() {
+        return ciudadRecidencia;
     }
 }

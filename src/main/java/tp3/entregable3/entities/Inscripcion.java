@@ -10,8 +10,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "inscripcion")
 @IdClass(InscripcionId.class)
 @ToString
@@ -55,5 +53,51 @@ public class Inscripcion implements Serializable {
     public String getAntiguedad() {
         Period antiguedad = Period.between(fechaInscripcion, LocalDate.now());
         return antiguedad.getYears() + " años, " + antiguedad.getMonths() + " meses";
+    }
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public int getIdCarrera() {
+        return idCarrera;
+    }
+
+    public int getNroLibreta() {
+        return nroLibreta;
+    }
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
+    }
+
+    public boolean isSeGraduo() {
+        return seGraduo;
+    }
+    public void setIdCarrera(int idCarrera) {
+        this.idCarrera = idCarrera;
+    }
+
+    public void setNroLibreta(int nroLibreta) {
+        this.nroLibreta = nroLibreta;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
+
+    public void setSeGraduo(boolean seGraduo) {
+        this.seGraduo = seGraduo;
     }
 }

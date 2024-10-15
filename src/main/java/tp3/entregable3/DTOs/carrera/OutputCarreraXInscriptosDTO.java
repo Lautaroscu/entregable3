@@ -14,4 +14,8 @@ public class OutputCarreraXInscriptosDTO extends OutputCarreraDTO {
         super(c);
         this.cantInscriptos = cantInscriptos;
     }
+
+    public long getCantInscriptos() {
+        return cantInscriptos;
+    }
 }

@@ -4,9 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@Getter
-@Setter
+
 public class CarreraReporteDTO {
     private String nombreCarrera;
     private int anio;
@@ -19,4 +17,30 @@ public class CarreraReporteDTO {
         this.cantidadInscriptos = cantidadInscriptos;
         this.cantidadEgresados = cantidadEgresados;
     }
+
+    public int getAnio() {
+        return anio;
+    }
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+    public long getCantidadInscriptos() {
+        return cantidadInscriptos;
+    }
+    public void setCantidadInscriptos(long cantidadInscriptos) {
+        this.cantidadInscriptos = cantidadInscriptos;
+    }
+    public long getCantidadEgresados() {
+        return cantidadEgresados;
+    }
+    public void setCantidadEgresados(long cantidadEgresados) {
+        this.cantidadEgresados = cantidadEgresados;
+    }
+    public String getNombreCarrera() {
+        return nombreCarrera;
+    }
+    public void setNombreCarrera(String nombreCarrera) {
+        this.nombreCarrera = nombreCarrera;
+    }
+
 }

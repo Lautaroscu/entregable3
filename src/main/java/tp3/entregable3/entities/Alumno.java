@@ -1,16 +1,14 @@
 package tp3.entregable3.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+
 import lombok.ToString;
+
 
 @Entity
 @Table(name = "alumno")
-@Getter
-@Setter
-@ToString
 
+@ToString
 public class Alumno {
 
     @Id
@@ -42,4 +40,47 @@ public class Alumno {
         this.genero = genero;
         this.ciudad_residencia = ciudad_residencia;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public int getNro_libreta() {
+        return nro_libreta;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public String getCiudad_residencia() {
+        return ciudad_residencia;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+    public void setCiudad_residencia(String ciudad_residencia) {
+        this.ciudad_residencia = ciudad_residencia;
+    }
+
 }
